@@ -411,7 +411,10 @@ public class MarioLevelUtil {
 					
 			////////////////////////////////////////////////////////
 			String[] stringBlock = new String[] {
-					"--------------------------------------------------------", 
+					"-------XX-----------------------------------------------", 
+					"-------XXX----------------------------------------------", 
+					"-------XXXX---------------------------------------------", 
+					"-------XXXXX--------------------------------------------", 
 					"--------------------------------------------------------", 
 					"--------------------------------------------------------", 
 					"---------ooooo------------------------------------------", 
@@ -428,9 +431,11 @@ public class MarioLevelUtil {
 	
 			//Level level = generateLevelFromCPPN(net, new double[] {1,1,1}, 60);
 			OldLevelParser parse = new OldLevelParser();
-			Level level = parse.createLevelASCII(new ArrayList<>(Arrays.asList(stringBlock)));
-			
-			Agent controller = new AStarAgent(); //new HumanKeyboardAgent(); //new SergeyKarakovskiy_JumpingAgent();
+			ArrayList<String> levelList = new ArrayList<>(Arrays.asList(stringBlock));
+			//levelList.remove(0); // First line is agent type
+			Level level = parse.createLevelASCII(levelList);
+			boolean human = args[0].equals("human");
+			Agent controller = human ? new HumanKeyboardAgent() : new AStarAgent(); //new SergeyKarakovskiy_JumpingAgent();
 			EvaluationOptions options = new CmdLineOptions(new String[]{});
 			options.setAgent(controller);
 			ProgressTask task = new ProgressTask(options);
