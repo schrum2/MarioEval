@@ -444,7 +444,8 @@ public class MarioLevelUtil {
 	        options.setLevel(level);
 			task.setOptions(options);
 
-			System.out.println ("Score: " + task.evaluate(options.getAgent())[0]);
+			//System.out.println ("Score: " + task.evaluate(options.getAgent())[0]);
+			task.evaluate(options.getAgent()); // Print inside method
 			ToolsConfigurator.DestroyMarioComponentFrame();
 			
 					

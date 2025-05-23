@@ -31,7 +31,21 @@ public class ProgressTask implements Task {
         for (EvaluationInfo result : results) {
             //if (result.marioStatus == Mario.STATUS_WIN )
             //    Easy.save(options.getAgent(), options.getAgent().getName() + ".xml");
-            distanceTravelled += result.computeDistancePassed();
+        	//distanceTravelled += result.computeDistancePassed();
+            System.out.println("computeDistancePassed:"+result.computeDistancePassed());
+            System.out.println("jumpActionsPerformed:"+result.jumpActionsPerformed);
+            System.out.println("killsTotal:"+result.killsTotal);
+            System.out.println("lengthOfLevelPassedCells:"+result.lengthOfLevelPassedCells);
+            System.out.println("lengthOfLevelPassedPhys:"+result.lengthOfLevelPassedPhys);
+            System.out.println("totalLengthOfLevelCells:"+result.totalLengthOfLevelCells);
+            System.out.println("totalLengthOfLevelPhys:"+result.totalLengthOfLevelPhys);
+            System.out.println("numberOfGainedCoins:"+result.numberOfGainedCoins);
+            System.out.println("timeSpentOnLevel:"+result.timeSpentOnLevel);
+            System.out.println("computeBasicFitness:"+result.computeBasicFitness());
+            System.out.println("computeJumpFraction:"+result.computeJumpFraction());
+            //System.out.println("computeKillsTotal:"+result.computeKillsTotal()); // duplicate
+            System.out.println("beaten:"+(result.computeDistancePassed()==result.lengthOfLevelPassedPhys));
+            
         }
         distanceTravelled = distanceTravelled / results.size();
         return new double[]{distanceTravelled};
