@@ -225,21 +225,22 @@ public class OldLevelParser {
 	public Level createLevelASCII(ArrayList<String> lines) {
 		int width = lines.get(0).length(); // Get width of level
 		int height = lines.size(); // Get height of level
-		int actualWidth = width+2*BUFFER_WIDTH; // Actual width corresponds to the width of the level instance
+		int actualWidth = width + BUFFER_WIDTH; //+2*BUFFER_WIDTH; // Actual width corresponds to the width of the level instance
 		Level level = new Level(actualWidth,height);
 
 		//Set Level Exit
 		//Extend level by that
-		level.xExit = width+BUFFER_WIDTH+1;
+		level.xExit = width; //+BUFFER_WIDTH+1;
 		level.yExit = height-1;
 
-		// Set the left side of the level to solid blocks
-		for(int i=0; i<BUFFER_WIDTH; i++){
-			level.setBlock(i, height-1, (byte) 9);
-		}
+//		// Set the left side of the level to solid blocks
+//		for(int i=0; i<BUFFER_WIDTH; i++){
+//			level.setBlock(i, height-1, (byte) 9);
+//		}
 		// Set the right side of the level to solid blocks
 		for(int i=0; i<BUFFER_WIDTH; i++){
-			level.setBlock(width+i+BUFFER_WIDTH, height-1, (byte) 9);
+			//level.setBlock(width+i+BUFFER_WIDTH, height-1, (byte) 9);
+			level.setBlock(width+i, height-1, (byte) 9);
 		}
 
 		//set Level map
@@ -249,13 +250,15 @@ public class OldLevelParser {
 				if(isEnemy(code)){
 					//set Enemy
 					//new SpriteTemplate(type, boolean winged)
-					level.setSpriteTemplate(j+BUFFER_WIDTH, i, spriteForCode(code));
+					//level.setSpriteTemplate(j+BUFFER_WIDTH, i, spriteForCode(code));
+					level.setSpriteTemplate(j, i, spriteForCode(code));
 					//System.out.println("j: "+j+" i:"+i);
 					//set passable tile: everything not set is passable
 				}else{
 					int encoded = codeParserASCII(code);
 					if(encoded !=0){
-						level.setBlock(j+BUFFER_WIDTH, i, (byte) encoded);
+						//level.setBlock(j+BUFFER_WIDTH, i, (byte) encoded);
+						level.setBlock(j, i, (byte) encoded);
 						//System.out.println("j: "+j+" i:"+i+" encoded: "+encoded);
 					}
 				}
@@ -360,6 +363,7 @@ public class OldLevelParser {
 		case "B": output = 14; break; //"B" : Top of a Bullet Bill cannon, solid
 		// There may be a problem here: VGLC uses "b" to represent what is either sprite 30 or 46 in Infinite Mario
 		case "b": output = 46; break; //"b" : Body/support of a Bullet Bill cannon, solid
+		case "Q": output = 21; break; // WHY WAS Q A DEFAULT EMPTY CASE BELOW!? 21 matches ?, should be different
 		default: output=0; break; //"-" : ["passable","empty"],  "Q" : ["solid","question block", "empty question block"],  "E" : ["enemy","damaging","hazard","moving"],
 		}
 		return output;
