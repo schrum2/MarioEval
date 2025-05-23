@@ -444,6 +444,7 @@ public class MarioLevelUtil {
 			Agent controller = human ? new HumanKeyboardAgent() : new AStarAgent(); //new SergeyKarakovskiy_JumpingAgent();
 			EvaluationOptions options = new CmdLineOptions(new String[]{});
 			options.setAgent(controller);
+			options.setVisualization(render);
 			ProgressTask task = new ProgressTask(options);
 	
 			// Added to change level
