@@ -35,7 +35,7 @@ The JAR includes all necessary dependencies and uses a jar-in-jar loader.
 Once the JAR is built, you can run it with a command like:
 
 ```
-java -jar .\MarioEval.jar human "----------------" "----------------" "----------------"  "----------------" "----------------" "----------------" "----------------" "----------------" "---E--oooooooo--" "XXXXXX?-----XXXX" "----------------" "---------E------"  "------SSSQSS----" "-------------<>-" "-------------[]-" "XXXXXXXXXXXXXXXX"
+java -jar .\MarioEval.jar human Example.txt human
 ```
 
 The actual main class that runs is:
@@ -43,25 +43,25 @@ The actual main class that runs is:
 edu.southwestern.tasks.mario.level.MarioLevelUtil
 ```
 
-The idea is that a complete level is sent to the program via the command line. The first parameter indicates the type of agent, either "human" play or an "astar" agent. The remaining lines should be strings of the same length that define a Mario level. Here is a more human legible version of the level being sent to the program above:
+The idea is that a complete level is sent to the program via the command line. The first parameter indicates the type of agent, either "human" play or an "astar" agent. The next parameter is a file containing the level representation below.
 
 ```
-"----------------" 
-"----------------" 
-"----------------"  
-"----------------" 
-"----------------" 
-"----------------" 
-"----------------" 
-"----------------" 
-"---E--oooooooo--" 
-"XXXXXX?-----XXXX" 
-"----------------" 
-"---------E------" 
-"------SSSQSS----" 
-"-------------<>-" 
-"-------------[]-" 
-"XXXXXXXXXXXXXXXX"
+----------------
+---------------- 
+----------------  
+---------------- 
+---------------- 
+---------------- 
+---------------- 
+---------------- 
+---E--oooooooo-- 
+XXXXXX?-----XXXX 
+---------------- 
+---------E------ 
+------SSSQSS---- 
+-------------<>- 
+-------------[]- 
+XXXXXXXXXXXXXXXX
 
 ```
 

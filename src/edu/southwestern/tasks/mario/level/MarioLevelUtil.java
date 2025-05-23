@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -403,12 +406,12 @@ public class MarioLevelUtil {
 		/**
 		 * For testing and debugging
 		 * @param args
+		 * @throws IOException 
 		 */
-		public static void main(String[] args) {
-//			Parameters.initializeParameterCollections(new String[] 
-//					{"runNumber:0","randomSeed:"+((int)(Math.random()*100)),"trials:1","mu:16","maxGens:500","io:false","netio:false","mating:true","allowMultipleFunctions:true","ftype:0","netChangeActivationRate:0.3","includeFullSigmoidFunction:true","includeFullGaussFunction:true","includeCosineFunction:true","includeGaussFunction:false","includeIdFunction:true","includeTriangleWaveFunction:true","includeSquareWaveFunction:true","includeFullSawtoothFunction:true","includeSigmoidFunction:false","includeAbsValFunction:true","includeSawtoothFunction:true"});
-//			MMNEAT.loadClasses();
-					
+		public static void main(String[] args) throws IOException {
+			// Expected: ["astar", t.name, render_str],
+
+			
 			////////////////////////////////////////////////////////
 //			String[] stringBlock = new String[] {
 //					"-------XX-----------------------------------------------", 
@@ -427,14 +430,17 @@ public class MarioLevelUtil {
 //					"---------[]-XXXXXXX----------EE-----XXXXXXXXXX[]--------", 
 //					"XXXXXXXXXXXXXXXXXXX-----XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 //				};
-					
-	
-			//Level level = generateLevelFromCPPN(net, new double[] {1,1,1}, 60);
-			OldLevelParser parse = new OldLevelParser();
-			ArrayList<String> levelList = new ArrayList<>(Arrays.asList(args));
-			levelList.remove(0); // First line is agent type
-			Level level = parse.createLevelASCII(levelList);
+
 			boolean human = args[0].equals("human");
+			String file = args[1];
+			boolean render = args.length > 2 ? args[2].equals("human") : false;
+			
+			OldLevelParser parse = new OldLevelParser();
+			
+			List<String> lines = Files.readAllLines(Paths.get(file));
+            ArrayList<String> levelList = new ArrayList<>(lines);
+			
+			Level level = parse.createLevelASCII(levelList);
 			Agent controller = human ? new HumanKeyboardAgent() : new AStarAgent(); //new SergeyKarakovskiy_JumpingAgent();
 			EvaluationOptions options = new CmdLineOptions(new String[]{});
 			options.setAgent(controller);
