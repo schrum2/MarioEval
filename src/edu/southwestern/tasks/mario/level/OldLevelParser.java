@@ -363,7 +363,7 @@ public class OldLevelParser {
 		case "B": output = 14; break; //"B" : Top of a Bullet Bill cannon, solid
 		// There may be a problem here: VGLC uses "b" to represent what is either sprite 30 or 46 in Infinite Mario
 		case "b": output = 46; break; //"b" : Body/support of a Bullet Bill cannon, solid
-		case "Q": output = 21; break; // WHY WAS Q A DEFAULT EMPTY CASE BELOW!? 21 matches ?, should be different
+		case "Q": output = 22; break; // WHY WAS Q A DEFAULT EMPTY CASE BELOW!? 21 matches ?, should be different. Trial and error indicate that 22 is correct mapping
 		default: output=0; break; //"-" : ["passable","empty"],  "Q" : ["solid","question block", "empty question block"],  "E" : ["enemy","damaging","hazard","moving"],
 		}
 		return output;
