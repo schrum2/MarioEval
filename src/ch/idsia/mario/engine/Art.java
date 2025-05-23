@@ -87,7 +87,7 @@ public class Art
             // System.out.println("Could not read image through getResourceAsStream");
             imageName = img + imageName;
             File file = new File(imageName);
-            System.out.println("File: " + file + ", exists " + file.exists() + ", length " + file.length ());
+            //System.out.println("File: " + file + ", exists " + file.exists() + ", length " + file.length ());
             source = ImageIO.read(file);
             // System.out.println("source: " + source);
         }
