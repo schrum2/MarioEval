@@ -66,3 +66,19 @@ XXXXXXXXXXXXXXXX
 ```
 
 It makes use of all available symbols for each tile type.
+
+## More notes on running the command:
+
+Play as a human:
+```
+java -jar .\MarioEval.jar human Example.txt human
+```
+Watch the A* agent play:
+```
+java -jar .\MarioEval.jar astar Example.txt human
+```
+Simulate A* without watching, but get the performance details at the end written to the console:
+```
+java -jar .\MarioEval.jar astar Example.txt astar
+```
+
