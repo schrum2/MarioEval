@@ -449,6 +449,8 @@ public class MarioLevelUtil {
 	
 			// Added to change level
 	        options.setLevel(level);
+	        //System.out.println(level.width);
+	        options.setTimeLimit(level.width / 2); // Short time limit
 			task.setOptions(options);
 
 			//System.out.println ("Score: " + task.evaluate(options.getAgent())[0]);

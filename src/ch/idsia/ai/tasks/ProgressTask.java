@@ -1,6 +1,7 @@
 package ch.idsia.ai.tasks;
 
 import ch.idsia.ai.agents.Agent;
+import ch.idsia.mario.engine.sprites.Mario;
 import ch.idsia.tools.EvaluationInfo;
 import ch.idsia.tools.EvaluationOptions;
 import ch.idsia.tools.Evaluator;
@@ -38,13 +39,15 @@ public class ProgressTask implements Task {
             System.out.println("lengthOfLevelPassedCells:"+result.lengthOfLevelPassedCells);
             System.out.println("lengthOfLevelPassedPhys:"+result.lengthOfLevelPassedPhys);
             System.out.println("totalLengthOfLevelCells:"+result.totalLengthOfLevelCells);
+            //System.out.println("levelgetWidthPhys:"+options.level.getWidthPhys());
             System.out.println("totalLengthOfLevelPhys:"+result.totalLengthOfLevelPhys);
             System.out.println("numberOfGainedCoins:"+result.numberOfGainedCoins);
             System.out.println("timeSpentOnLevel:"+result.timeSpentOnLevel);
             System.out.println("computeBasicFitness:"+result.computeBasicFitness());
             System.out.println("computeJumpFraction:"+result.computeJumpFraction());
             //System.out.println("computeKillsTotal:"+result.computeKillsTotal()); // duplicate
-            System.out.println("beaten:"+(result.computeDistancePassed()==result.lengthOfLevelPassedPhys));
+            System.out.println("marioStatus:"+result.marioStatus);
+            System.out.println("beaten:"+(result.marioStatus == Mario.STATUS_WIN));
             
         }
         distanceTravelled = distanceTravelled / results.size();
